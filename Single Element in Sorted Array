@@ -1,0 +1,22 @@
+# from striver
+class Solution:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        #(even,odd) same element so we r in left half search in right
+        #(odd,even) same ekent so we r in right half search for left
+
+        if len(nums)==1:
+            return nums[0]
+        if nums[0]!=nums[1]:
+            return nums[0]
+        if nums[-1]!=nums[-2]:
+            return nums[-1]
+        s,e=1,len(nums)-2
+        while s<=e:
+            mid=(s+e)//2 
+            if (nums[mid]!=nums[mid-1]) and (nums[mid]!=nums[mid+1]):
+                return nums[mid]
+            elif (mid%2==1 and nums[mid]==nums[mid-1]) or (mid%2==0 and nums[mid]==nums[mid+1]):
+                s=mid+1
+            else:
+                e=mid-1  
+        return -1                    
