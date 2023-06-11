@@ -1,0 +1,36 @@
+def getMedian(matrix):
+    # Write your code here.
+
+    def findsmall(arr,median):
+        s,e=0,len(arr)-1
+        while s<=e:
+            mid=(s+e)//2
+            if median>=arr[mid]:
+                s=mid+1
+            else:
+                e=mid-1
+        return s            
+
+    n=len(matrix)
+    m=len(matrix[0])
+    
+    N=n*m
+    indexofmedian=N//2
+
+    l=0
+    h=max(i[-1] for i in matrix)
+
+    while l<=h:
+        mid=(l+h)//2
+        #count the number of element in matrix smaller then mid
+        counter=0
+        for i in matrix:
+            counter+=findsmall(i,mid)
+        if counter<=indexofmedian:
+            l=mid+1
+        else:
+            h=mid-1
+    return l                
+                    
+
+
