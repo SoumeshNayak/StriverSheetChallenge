@@ -1,0 +1,24 @@
+def aggressiveCows(stalls, k):
+    arr=sorted(stalls)
+    s,e=1,arr[len(arr)-1]-arr[0]
+    res=-1
+
+    def possible(mid):
+        noofcow=1
+        place=arr[0]
+        for i in arr[1:]:
+            if i-place>=mid:
+                noofcow+=1
+                place=i
+            if noofcow==k:
+                return True    
+        return  False        
+
+    while s<=e:
+        mid=(s+e)//2
+        if possible(mid):
+            res=mid
+            s=mid+1
+        else:
+            e=mid-1
+    return res            
