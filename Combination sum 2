@@ -1,0 +1,22 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
+        res=[]
+        def func(ind,li,target):
+            if target==0:
+                res.append(li[::])
+                return 
+            if target<0:
+                return
+            prev=-1    
+            for i in range(ind,len(candidates)):
+                if prev==candidates[i]:
+                    continue    
+
+                li.append(candidates[i])
+                func(i+1,li,target-candidates[i])
+                li.pop()
+                prev=candidates[i]
+
+        func(0,[],target)
+        return res
