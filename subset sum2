@@ -1,0 +1,20 @@
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res=[]
+        nums.sort()
+        def func(ind,li):
+            if ind==len(nums):
+                res.append(li[::])
+                return
+            li.append(nums[ind])
+            func(ind+1,li)
+            li.pop()
+            #To remove duplicates
+            while ind+1<len(nums) and nums[ind]==nums[ind+1]:
+                ind+=1
+            func(ind+1,li)
+            
+            
+        func(0,[])
+        return res
+            
