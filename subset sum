@@ -1,0 +1,13 @@
+class Solution:
+	def subsetSums(self, arr, N):
+		li=[]
+		
+		def func(ind,sum):
+		    if ind==len(arr):
+		        li.append(sum)
+		        return
+		    func(ind+1,sum+arr[ind])
+		    func(ind+1,sum)
+	    func(0,0)
+	    li=sorted(li)
+	    return li
