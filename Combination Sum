@@ -1,0 +1,13 @@
+        res=[]
+        def combine(ind,sum,li):
+            if sum>target or ind>=len(candidates):
+                return
+            if sum==target:
+                res.append(li[::])
+                return
+            li.append(candidates[ind])
+            combine(ind,sum+candidates[ind],li)
+            li.pop()
+            combine(ind+1,sum,li)
+        combine(0,0,[])
+        return res
