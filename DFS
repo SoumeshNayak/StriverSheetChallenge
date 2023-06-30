@@ -1,0 +1,26 @@
+from typing import *
+
+
+def depthFirstSearch(V: int, E: int, edges: List[List[int, int]]):
+    
+    vis=[0 for i in range(V+1)]
+    adj=[[] for i in range(V+1)]
+
+    for a,b in edges:
+        adj[a].append(b)
+        adj[b].append(a)
+
+    def dfs(node,adj,vis,li):
+        vis[node]=1
+        li.append(node)
+        for i in adj[node]:
+            if vis[i]==0:
+                dfs(i,adj,vis,li)
+    ans=[]            
+    for i in range(V):
+        if vis[i]==0:
+            li=[]
+            dfs(i,adj,vis,li)
+            li.sort()
+            ans.append(li)
+    return ans
