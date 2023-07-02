@@ -1,0 +1,20 @@
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adj={i:[] for i in range(numCourses)}
+        vis=set()
+        for x,y in prerequisites:
+            adj[x].append(y)
+        def dfs(node):
+            if node in vis:
+                return False
+            if adj[node]==[]:
+                return True
+            vis.add(node)
+            for ele in adj[node]:
+                if not dfs(ele): return False
+            vis.remove(node)
+            adj[node]=[]
+            return True
+        for node in range(numCourses):
+            if not (dfs(node)): return False
+        return True            
